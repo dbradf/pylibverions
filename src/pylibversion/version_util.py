@@ -39,7 +39,7 @@ def _find_version_line_in_file(file_path):
     :param file_path: Path to file to search.
     :return: Line in file containing `VERSION`.
     """
-    with open(file_path, "r") as fileh:
+    with open(str(file_path), "r") as fileh:
         version_lines = [
             line for line in fileh.readlines() if line.startswith("VERSION")
         ]
