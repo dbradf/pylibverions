@@ -10,7 +10,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-with open("README.md", "r") as fh:
+with open(os.path.join(os.path.dirname(__file__), "README.md"), "r") as fh:
     long_description = fh.read()
 
 setup(
