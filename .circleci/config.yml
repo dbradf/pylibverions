@@ -44,8 +44,9 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
+            cd repo
             tox
 
       - store_artifacts:
-          path: test-reports
+          path: repo/test-reports
           destination: test-reports
