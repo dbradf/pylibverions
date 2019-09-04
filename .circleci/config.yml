@@ -52,3 +52,51 @@ jobs:
 
       - store_test_results:
           path: test-reports
+
+  deploy:
+    docker:
+      - image: circleci/python:3.6
+    working_directory: ~/repo
+    steps:
+      - checkout
+
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install twine
+
+      - run:
+          name: init .pypirc
+          command: |
+            echo -e "[pypi]" >> ~/.pypirc
+            echo -e "username = $PYPI_USERNAME" >> ~/.pypirc
+            echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
+
+      - run:
+          name: build package
+          command: |
+            . venv/bin/activate
+            python setup.py sdist bdist_wheel
+
+
+      - run:
+          name: deploy package to pypi
+          command: |
+            . venv/bin/activate
+            twine upload dist/*
+
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+
