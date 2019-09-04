@@ -65,6 +65,6 @@ def lookup_local_module_version(path_to_module_name):
     :param path_to_module_name: path to module to lookup.
     :return: Version tuple for specified module.
     """
-    path_to_init = os.path.join(path_to_module_name, "__init__.py")
+    path_to_init = os.path.join(str(path_to_module_name), "__init__.py")
     version_tuple = eval(_find_version_line_in_file(path_to_init).split("=")[-1])
     return version_tuple_to_str(version_tuple)
