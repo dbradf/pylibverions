@@ -1,5 +1,7 @@
 # pylibversion
 
+[![CircleCI](https://circleci.com/gh/dbradf/pylibverions.svg?style=svg)](https://circleci.com/gh/dbradf/pylibverions)
+
 A library to help manage versions in python libraries.
 
 This package assumes that there is a main package with a `__init__.py` file with the `VERSION` defined as a tuple.
@@ -12,7 +14,7 @@ VERSION = (0, 0, 1)
 
 ## Usage
 
-### String based version 
+### String based version
 
 You can add a string based version as described in (PEP 396)[https://www.python.org/dev/peps/pep-0396/] to your
 `__init__.py` file or in other locations with the `version_tuple_to_str` function:
